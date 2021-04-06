@@ -1,0 +1,43 @@
+/* 
+  Localizable.strings
+  Ekoo
+
+  Created by liuyalu on 2020/7/14.
+  Copyright © 2020 liuyalu. All rights reserved.
+*/
+
+"input_phone_number" = "請輸入手機號碼";
+"phone_number" = "手機號碼";
+"continue" = "繼續";
+"regist_text" = "註冊即表示同意EKOO的";
+"regist_service" = "服務條款及隱私政策";
+"area_code_title" = "選擇國家或地區";
+"input_phone_number_error1" = "手機號碼不能為空";
+"input_phone_number_error2" = "手機號碼不能有特殊字符";
+"input_verfiy_code" = "請輸入驗證碼";
+"send_SMS_to%@" = "已通過短訊發送至:%@";
+"%dverify_code_time" = "%d秒後重新發送";
+"send_again_verify_code" = "點擊重新發送";
+"" = "";
+"" = "";
+"" = "";
+"" = "";
+"" = "";
+"" = "";
+"" = "";
+"" = "";
+"" = "";
+"" = "";
+"" = "";
+"" = "";
+"" = "";
+"" = "";
+"" = "";
+"" = "";
+"" = "";
+"" = "";
+"" = "";
+"" = "";
+"" = "";
+"" = "";
+"" = "";

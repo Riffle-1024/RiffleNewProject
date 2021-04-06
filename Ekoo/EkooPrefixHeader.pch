@@ -1,0 +1,194 @@
+//
+//  EkooPrefixHeader.pch
+//  Ekoo
+//
+//  Created by liuyalu on 2020/7/14.
+//  Copyright © 2020 liuyalu. All rights reserved.
+//
+
+#ifndef EkooPrefixHeader_pch
+#define EkooPrefixHeader_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+//#define VERSION_APPSTORE // AppStore版本需要打开
+
+/*appstore版本的部分宏控  一 */
+#ifdef VERSION_APPSTORE
+// 关闭LOG
+#define DLog(...)
+#else
+// 打开LOG
+#define DLog(fmt, ...) NSLog((@"\n[File: %s]\n" "[Function: %s]\n" "[Line: %d]\n BWNSLog: \n" fmt), __FILE__, __FUNCTION__, __LINE__, ##__VA_ARGS__);
+
+#endif
+//第三方库
+#import <AFNetworking.h>
+#import "SDWebImage/UIImageView+WebCache.h"
+
+//本地class
+#import "EkooHttpRequest.h"
+#import "EkooUIEngine.h"
+#import "EkooAppDelegate.h"
+#import "UIView+Toast.h"
+#import "NSArray+Addtion.h"
+
+
+#define DEVICE_IS_IPHONE_X \
+({BOOL isPhoneX = NO;\
+if (@available(iOS 11.0, *)) {\
+isPhoneX = [[UIApplication sharedApplication] delegate].window.safeAreaInsets.bottom > 0.0;\
+}\
+(isPhoneX);})
+#define VIEW_WIDTH   [[UIScreen mainScreen] bounds].size.width
+#define VIEW_HEIGHT  [[UIScreen mainScreen] bounds].size.height
+#define NAV_HEIGHT (DEVICE_IS_IPHONE_X ? 88 : 64)
+#define TABBAR_HEIGHT (DEVICE_IS_IPHONE_X ? 34 : 0)
+#define VIEW_BOTTOM_AREA_HEIGHT (DEVICE_IS_IPHONE_X ? 34 : 0)
+#define IPHONE_X_BOTTOM_AREA_HEIGHT 34
+/*** 屏幕适配 ***/
+#define VIEW_FIT_TO_IPHONE5_VALUE(x) ceil(VIEW_WIDTH * x / 320)
+#define VIEW_FIT_TO_IPHONE6_VALUE(x) ceil(VIEW_WIDTH * x / 375)//iphone x 适用
+#define VIEW_FIT_TO_PLUS_VALUE(x) ceil(VIEW_WIDTH * x / 415)
+/*** 字体大小适配 ***/
+#define FONT_FIT_TO_IPHONE5_VALUE(x) ceil(VIEW_WIDTH * x / 320)
+#define FONT_FIT_TO_IPHONE6_VALUE(x) ceil(VIEW_WIDTH * x / 375)//iphone x 适用
+#define FONT_FIT_TO_PLUS_VALUE(x) ceil(VIEW_WIDTH * x / 415)
+#define kAdaptationCoefficient ([[UIScreen mainScreen] bounds].size.width)/375.0
+
+/*** 屏幕适配Px ***/
+#define PX_FIT_TO_IPHONE5_VALUE(x) (x)/2.0*(VIEW_WIDTH/320)
+#define PX_FIT_TO_IPHONE6_VALUE(x) (x)/2.0*(VIEW_WIDTH/375)//iphone x 适用
+#define PX_FIT_TO_PLUS_VALUE(x) (x)/2.0*(VIEW_WIDTH/415)
+
+// 字体和大小
+//#define FONT_DEFAULT  @"Helvetica"
+#define MYFONT @"Helvetica"  //@"DINCond-Regular"
+
+#define SIZE_NAV_TITLE ([[UIScreen mainScreen] bounds].size.width > 320) ? 18 : 18
+#define SIZE_NAV_SUBTITLE ([[UIScreen mainScreen] bounds].size.width > 320) ? 15 : 15
+#define SIZE_NAV_BUTTON   ([[UIScreen mainScreen] bounds].size.width > 320) ? 15 : 15
+#define SIZE_LABEL_BIG     17
+#define SIZE_LABEL_MIDDLE  18
+#define SIZE_LABEL_SMALL   13
+#define SIZE_LABEL_SMALL_2   12
+#define SIZE_TEXTFIELD     15
+#define SIZE_BUTTON        15
+#define SIZE_CELL_TITLE    17
+#define SIZE_CELL_SUBTITLE 15
+
+#define MAX_LENGTH_NICKNAME 6
+#define MAX_LENGTH_PHONENUMBER 18
+
+#define MYFONT_SIZE_NAV_TITLE       [UIFont fontWithName:MYFONT size:SIZE_NAV_TITLE]
+#define MYFONT_SIZE_NAV_SUBTITLE       [UIFont fontWithName:MYFONT size:SIZE_NAV_SUBTITLE]
+#define MYFONT_SIZE_NAV_BUTTON      [UIFont fontWithName:MYFONT size:SIZE_NAV_BUTTON]
+#define MYFONT_SIZE_LABEL_BIG          [UIFont fontWithName:MYFONT size:SIZE_LABEL_BIG]
+#define MYFONT_SIZE_LABEL_MIDDLE          [UIFont fontWithName:MYFONT size:SIZE_LABEL_MIDDLE]
+#define MYFONT_SIZE_LABEL_SMALL         [UIFont fontWithName:MYFONT size:SIZE_LABEL_SMALL]
+#define MYFONT_SIZE_LABEL_SMALL_2         [UIFont fontWithName:MYFONT size:SIZE_LABEL_SMALL_2]
+#define MYFONT_SIZE_TEXTFIELD       [UIFont fontWithName:MYFONT size:SIZE_TEXTFIELD]
+#define MYFONT_SIZE_BUTTON          [UIFont fontWithName:MYFONT size:SIZE_BUTTON]
+#define MYFONT_SIZE_CELL_TITLE      [UIFont fontWithName:MYFONT size:SIZE_CELL_TITLE]
+#define MYFONT_SIZE_CELL_SUBTITLE   [UIFont fontWithName:MYFONT size:SIZE_CELL_SUBTITLE]
+
+
+
+#define COLOR_CUTTING_LINE UIColorFromRGB(0xe5e5e5)
+#define COLOR_EKOO UIColorFromRGB(0xFFC107)
+#define COLOR_EKOO_GRAY UIColorFromRGB(0x9E9E9E)
+//颜色获取
+#define STROKE_COLOR  [UIColor colorWithRed:106/255.0 green:233/255.0 blue:200/255.0 alpha:220/255.0]
+#define STROKE_COLOR_DARK [UIColor colorWithRed:28/255.0 green:157/255.0 blue:128/255.0 alpha:1.0]
+
+#define COLOR_NAVIGATION_BAR_SHARE_STEP UIColorFromRGB(0xca3107)
+#define grayBlack [UIColor colorWithRed:163/255.0 green:163/255.0 blue:163/255.0 alpha:1]
+#define specialGreen [UIColor colorWithRed:18/255.0 green:167/255.0 blue:229/255.0 alpha:1]
+
+#define UIColorFromRGB(rgbValue)                             [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
+#define UIColorWithAlphaFromRGB(rgbValue,alpha)             [[UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0] colorWithAlphaComponent:alpha]
+
+#define COLOR_XUN_THEME UIColorFromRGB(0xff5a00)
+#define COLOR_NAVIGATION_BAR UIColorFromRGB(0xffffff)
+#define COLOR_NAVIGATION_TITLE UIColorFromRGB(0x313131)
+#define COLOR_NAVIGATION_SUBTITLE UIColorFromRGB(0x616161)
+#define COLOR_NAVIGATION_BUTTON_DISABLED UIColorFromRGB(0xd5d5d5)
+#define COLOR_NAVIGATION_BUTTON_NORMAL UIColorFromRGB(0xf56d3e)
+#define COLOR_CUTTING_LINE UIColorFromRGB(0xe5e5e5)
+#define COLOR_GROUND_COLOR UIColorFromRGB(0xf8f8fa)
+#define COLOR_TIPS_TEXT_COLOR UIColorFromRGB(0x898989)
+#define FONT_NAVIGATION_CENTER_TITLE 18
+#define FONT_NAVIGATION_LFET_RIGHT_TITLE 16
+
+#define COLOR_GRAY [[UIColor blackColor] colorWithAlphaComponent:0.7]
+#define COLOR_LIGHT_GRAY [[UIColor blackColor] colorWithAlphaComponent:0.1]
+#define COLOR_HEAD_BORDER [UIColor whiteColor].CGColor
+
+#define COLOR_DEVICE_BIND_FAIL UIColorFromRGB(0x383C3E)
+
+#define COLOR_WEBVIEW_BG UIColorFromRGB(0xf5f5f5)
+#define COLOR_STEP_RANK_PUSH_TEXT UIColorFromRGB(0x81511c)
+#define COLOR_TITLE_GROUP_GRAY UIColorFromRGB(0xd8d8d8)
+
+#define COLOR_STICKY_ON_TOP_BG UIColorFromRGB(0xf3f3f6)
+
+#define COLOR_BLACK_ALPHA_10 [[UIColor blackColor] colorWithAlphaComponent:0.1] // 黑色 透明度 10%
+#define COLOR_BLACK_ALPHA_30 [[UIColor blackColor] colorWithAlphaComponent:0.3] // 黑色 透明度 30%
+#define COLOR_BLACK_ALPHA_50 [[UIColor blackColor] colorWithAlphaComponent:0.5] // 黑色 透明度 50%
+#define COLOR_BLACK_ALPHA_70 [[UIColor blackColor] colorWithAlphaComponent:0.7] // 黑色 透明度 70%
+#define COLOR_BLACK_ALPHA_80 [[UIColor blackColor] colorWithAlphaComponent:0.8] // 黑色 透明度 80%
+
+#define COLOR_WHITE_ALPHA_50 [[UIColor whiteColor] colorWithAlphaComponent:0.5] // 白色 透明度 50%
+#define COLOR_WHITE_ALPHA_90 [[UIColor whiteColor] colorWithAlphaComponent:0.9] // 白色 透明度 90%
+
+#define COLOR_BUTTON_GREEN UIColorFromRGB(0x33A72A)
+
+#define WIDTH_HEAD_BORDER 1.0
+//AA54B7A6  84    183   166   170
+//#define STROKE_COLOR [UIColor colorWithRed:84/255.0 green:183/255.0 blue:166/255.0 alpha:220/255.0]
+#define STROKE_WIDTH 8.0
+#define BAIDU_STROKE_WIDTH 8.0
+#define RGBA(R/*红*/, G/*绿*/, B/*蓝*/, A/*透明*/) \
+[UIColor colorWithRed:R/255.f green:G/255.f blue:B/255.f alpha:A]
+// 系统版本
+#define iOS13_OR_LATER ([[[UIDevice currentDevice] systemVersion] floatValue] >= 13.0)
+#define iOS9_OR_LATER ([[[UIDevice currentDevice] systemVersion] floatValue] >= 9.0)
+#define iOS8_OR_LATER ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
+#define iOS7_OR_LATER ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0)
+
+
+#define BW_WeakSelf __weak typeof(self)
+
+#define IS_NIL_OR_NULL(object)   (object == nil || [object isEqual:[NSNull null]])
+
+// 全局
+#define shareAppDelegate  ((EkooAppDelegate *)[[UIApplication sharedApplication] delegate])
+#define selfNavigationController [shareAppDelegate sharedNavigationController]
+
+// 本地化
+#define LSTRING(str) NSLocalizedString(str, nil)
+
+//时间格式
+
+#define kDefaultDateFormat               @"yyyy-MM-dd-HH-mm-ss"
+#define kDefaultDateFormatHHmm           @"yyyy-MM-dd-HH-mm"
+#define kDayFormat                       @"yyyy-MM-dd"
+#define kYearMouthFormat                 @"yyyy-MM"
+#define kHourFormat                      @"MM-dd"
+#define kYearFormat                      @"MM"
+
+/*
+ *
+ *request url
+ *
+ */
+#define ROOT_URL @"http://www.ekoovip.vip"
+#define AREA_CODE_URL [NSString stringWithFormat:@"%@/api/login/countryList",ROOT_URL]
+
+
+#define MYFONT_SIZE_NAV_TITLE       [UIFont fontWithName:MYFONT size:SIZE_NAV_TITLE]
+
+
+
+#endif /* EkooPrefixHeader_pch */
